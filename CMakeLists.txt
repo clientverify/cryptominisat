@@ -332,7 +332,11 @@ add_subdirectory(src cmsat4-src)
 # -----------------------------------------------------------------------------
 find_package (PythonInterp 2.7)
 find_package (PythonLibs 2.7)
-if (PYTHON_EXECUTABLE AND PYTHON_LIBRARY AND PYTHON_INCLUDE_DIRS)
+
+SET(ENABLE_PYTHON_INTERFACE "" CACHE BOOL "User option to enable python interface")
+message(STATUS "ENABLE_PYTHON_INTERFACE is: ${ENABLE_PYTHON_INTERFACE}")
+
+if (ENABLE_PYTHON_INTERFACE AND PYTHON_EXECUTABLE AND PYTHON_LIBRARY AND PYTHON_INCLUDE_DIRS)
 #     message(STATUS "PYTHON_EXECUTABLE:FILEPATH=${PYTHON_EXECUTABLE}")
 #     message(STATUS "PYTHON_LIBRARY:FILEPATH=${PYTHON_LIBRARY}")
 #     message(STATUS "PYTHON_INCLUDE_DIR:FILEPATH=${PYTHON_INCLUDE_DIR}")
