@@ -332,6 +332,10 @@ add_subdirectory(src cmsat4-src)
 # -----------------------------------------------------------------------------
 find_package (PythonInterp 2.7)
 find_package (PythonLibs 2.7)
+# As of 4.5.3, the Python plugin requires root for install. We therefore
+# disable it for the purpose of building with KLEE.
+option(NOPYTHONPLUGIN "Do not build Python plugin" OFF)
+if (NOT NOPYTHONPLUGIN)
 if (PYTHON_EXECUTABLE AND PYTHON_LIBRARY AND PYTHON_INCLUDE_DIRS)
 #     message(STATUS "PYTHON_EXECUTABLE:FILEPATH=${PYTHON_EXECUTABLE}")
 #     message(STATUS "PYTHON_LIBRARY:FILEPATH=${PYTHON_LIBRARY}")
@@ -342,6 +346,7 @@ if (PYTHON_EXECUTABLE AND PYTHON_LIBRARY AND PYTHON_INCLUDE_DIRS)
 else()
     message(WARNING "Cannot find python interpreter, libs and header files -> not building python plugin")
 endif()
+endif() # NOPYTHONPLUGIN
 
 # -----------------------------------------------------------------------------
 # Add uninstall target for makefiles
